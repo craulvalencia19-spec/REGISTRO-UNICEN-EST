@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICEN | Inteligencia Artificial & Innovación Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="welcome-gate">
+        <div class="cinema-main">
+            <div class="movie-slide">
+                <p class="scramble-tag">// SISTEMA DE INNOVACIÓN DIGITAL IA ACTIVO</p>
+                <p class="movie-title">EL FUTURO NO SE PREDICE...</p>
+            </div>
+            <div class="movie-slide">
+                <p class="movie-title cyan-glow">EL FUTURO SE PROGRAMA.</p>
+            </div>
+            <div class="movie-slide features-slide">
+                <p class="movie-brand">UNICEN</p>
+                <p class="movie-slogan">LA UNIVERSIDAD QUE ROMPE EL DESEMPLEO</p>
+            </div>
+        </div>
+        <div class="gate-action-area">
+            <button onclick="unlockSystem()" class="gate-btn">ACCEDER A LA INTERFAZ</button>
+        </div>
+    </div>
+
+    <div class="video-background-container">
+        <video id="bg-video-intro" class="video-stream active" loop muted playsinline src="WhatsApp Video 2026-06-11 at 10.55.38 PM.mp4"></video>
+        <video id="bg-video-robot" class="video-stream" loop muted playsinline src="WhatsApp Video 2026-06-11 at 10.15.48 PM.mp4"></video>
+        <video id="bg-video-like" class="video-stream" muted playsinline src="WhatsApp Video 2026-06-11 at 10.19.42 PM.mp4"></video>
+    </div>
+
+    <div id="canvas-container"></div>
+    <div class="interface-overlay"></div>
+
+    <div id="cinema-logo-reveal" class="logo-reveal-hidden">
+        <img src="5fe03c41-770d-4818-ac73-ec353905d0e4.jpg" alt="Logo UNICEN">
+    </div>
+
+    <div id="main-dashboard" class="hidden-dashboard">
+        
+        <header class="navbar">
+            <img src="5fe03c41-770d-4818-ac73-ec353905d0e4.jpg" alt="Logo UNICEN" class="main-logo-premium">
+            <div class="nav-right">
+                <a href="registro.html" class="btn-registro">REGISTRARSE</a>
+                <div class="ai-status">
+                <span class="pulse-dot"></span> INTERFAZ IA ACTIVA // UNICEN 2026
+            </div>
+            </div>
+        </header>
+
+        <aside class="control-grid-panel">
+            <div class="panel-header-title">// SELECCIÓN DE COMANDOS</div>
+            <div class="buttons-mesh">
+                <button class="nav-node active" onclick="triggerGridAction('inicio', 0)">[01] INICIO GLOBAL</button>
+                <button class="nav-node" onclick="triggerGridAction('carrera', 1)">[02] LA CARRERA</button>
+                <button class="nav-node" onclick="triggerGridAction('mision', 2)">[03] NUESTRA MISIÓN</button>
+                <button class="nav-node" onclick="triggerGridAction('vision', 3)">[04] NUESTRA VISIÓN</button>
+                <button class="nav-node" onclick="triggerGridAction('filosofia', 4)">[05] FILOSOFÍA</button>
+                <button class="nav-node" onclick="triggerGridAction('macc', 5)">[06] MÉTODO MAC-C</button>
+                <button class="nav-node" onclick="triggerGridAction('campo', 6)">[07] CAMPO LABORAL</button>
+                <button class="nav-node" onclick="triggerGridAction('imagenes', 7)">[08] CÓDIGO & ACCIÓN</button>
+                <button class="nav-node btn-special" onclick="triggerGridAction('ubicacion', 8)">[09] UBICACIÓN SEDES</button>
+            </div>
+        </aside>
+
+        <main id="content-scroller">
+            
+            <section class="panel" id="pane-inicio">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="badge">SISTEMA INTEGRADO UNICEN</span>
+                        <h2 class="text-xl">INNOVACIÓN DIGITAL & IA</h2>
+                        <p class="desc">Bienvenido al ecosistema académico más avanzado del país. La Licenciatura en Innovación Digital e Inteligencia Artificial de la UNICEN rompe los esquemas tradicionales de la educación, uniendo ciencias de la computación, automatización de procesos complejos, analítica predictiva y gestión de negocios dislocadores en un plan de estudios único de nivel global.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Saber Más →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="badge">// ENFOQUE ESTRATÉGICO</span>
+                        <h2 class="text-xl">REVOLUCIÓN PRODUCTIVA</h2>
+                        <p class="desc">A través de esta plataforma digital interactiva, coordinada con simulación 3D en tiempo real y redes neuronales activas, tendrás acceso a los pilares que definen el éxito industrial moderno. Aquí se preparan los ingenieros de software, analistas de datos y directores tecnológicos que demandan los mercados internacionales hoy mismo.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// SOLO CON NOSOTROS</span>
+                        <h2 class="text-xl">ROMPE EL DESEMPLEO</h2>
+                        <p class="desc">UNICEN, comprometida con tu futuro laboral. Solo con nosotros rompe el desempleo.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// VIDA INSTITUCIONAL</span>
+                        <h2 class="text-xl">NUESTRA HISTORIA</h2>
+                        <p class="desc">La Universidad Central (UNICEN) fue fundada el 18 de enero de 1990 en la ciudad de Cochabamba, Bolivia. Actualmente cuenta con 35 años de vida institucional.</p><p class="desc">UNICEN tiene más de 11.000 estudiantes a nivel nacional y 11 carreras a nivel Licenciatura distribuidas en áreas: Empresarial, Salud y Social; además cuenta con un grupo de carreras dentro del Programa de Formación Complementaria, dirigido a Técnicos Superiores.</p><p class="desc">Su importante presencia nacional consolidó a su Sede Central en la ciudad de Cochabamba y sus Subsedes en las ciudades de La Paz y Santa Cruz.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// RECONOCIMIENTOS</span>
+                        <h2 class="text-xl">DISTINCIONES</h2>
+                        <ul class="info-list"><li>Reconocida como Institución Meritoria por la Cámara de Diputados de la Asamblea Legislativa Plurinacional de Bolivia.</li><li>Condecorada por el Gobierno Autónomo Municipal de Cochabamba con la distinción “Manuela Gandarillas”.</li><li>Distinción “Galardón Titicaca”, por la Cámara de Senadores del Estado Plurinacional de Bolivia, por ser la universidad con mayor crecimiento a nivel nacional.</li><li>Condecorada por la Brigada Parlamentaria de La Paz de la Asamblea Legislativa Plurinacional de Bolivia; “Galardón Cordillera de los Andes”.</li><li>Condecorada por la Brigada Parlamentaria de Cochabamba con la distinción “Llajta de la Concordia”.</li><li>Reconocimiento de la Cámara de Senadores del Estado Plurinacional de Bolivia, a la carrera de Medicina por formar profesionales médicos de excelencia.</li></ul>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// WEBOMETRICS</span>
+                        <h2 class="text-xl">RANKING MUNDIAL</h2>
+                        <p class="desc">UNICEN, entre las mejores universidades privadas de Bolivia, según Ranking Mundial (Webometrics - Ranking Web of Universities).</p><p class="desc">Estos datos alentadores para la universidad fortalecen el compromiso de UNICEN, el de continuar trabajando en bien de la formación académica de los universitarios, asegurando su futuro profesional y laboral.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-carrera">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// DESCRIPCIÓN ACADÉMICA</span>
+                        <h2 class="text-xl">¿DE QUÉ TRATA?</h2>
+                        <p class="desc">Esta carrera funde la ingeniería del software con la ciencia de datos. Los estudiantes se adentran en arquitecturas distribuidas, desarrollo de aplicaciones nativas de la nube, automatización robótica de procesos (RPA), ciberseguridad industrial y el modelado matemático requerido para entrenar redes neuronales profundas y LLMs.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Plan de Estudios →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// TECNOLOGÍAS CORE</span>
+                        <h2 class="text-xl">COMPETENCIAS CLAVE</h2>
+                        <p class="desc">Aprenderás a programar en entornos robustos (Python, C++, Go, Rust) orientados al despliegue de Inteligencia Artificial Avanzada. Dominarás el análisis de datos masivos (Big Data), el entrenamiento de algoritmos supervisados y no supervisados, Computer Vision, procesamiento de lenguaje natural y la integración de soluciones de IA en hardware industrial.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// PERFIL PROFESIONAL</span>
+                        <h2 class="text-xl">LICENCIATURA EN IA</h2>
+                        <p class="desc">El/la Licenciado/a en Innovación Digital e Inteligencia Artificial es un profesional con visión estratégica e innovadora, capaz de diseñar, desarrollar, auditar y gestionar soluciones tecnológicas avanzadas, integrando inteligencia artificial y tecnologías emergentes para optimizar procesos y potenciar la competitividad en diversos sectores.</p><p class="desc">Como Licenciado/a en IA podrás diseñar, desarrollar e implementar sistemas de IA, utilizando técnicas como el aprendizaje automático (machine learning), el aprendizaje profundo (deep learning) y el procesamiento de lenguaje natural para resolver problemas complejos y optimizar procesos en diversas áreas como la medicina, la industria, las finanzas y los servicios públicos.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// PERFIL PROFESIONAL</span>
+                        <h2 class="text-xl">¿QUÉ HACE UN LICENCIADO EN IA?</h2>
+                        <ul class="info-list"><li><strong>Desarrolla algoritmos:</strong>Crea y optimiza algoritmos que permiten a los sistemas aprender de los datos y tomar decisiones.</li><li><strong>Gestiona datos:</strong>Analiza grandes volúmenes de datos para identificar patrones, tendencias y oportunidades, apoyando la toma de decisiones.</li><li><strong>Crea soluciones:</strong>Diseña e implementa soluciones de IA para automatizar procesos, predecir comportamientos y mejorar la eficiencia en distintos sectores.</li><li><strong>Trabaja en equipo:</strong>Colabora en equipos multidisciplinarios para desarrollar e implementar proyectos innovadores de IA.</li><li><strong>Lidera proyectos de innovación:</strong>Dirige y gestiona el desarrollo de productos y servicios inteligentes y automatizados, respondiendo a las demandas del mercado.</li></ul>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// DIFERENCIAL UNICEN</span>
+                        <h2 class="text-xl">¿CUÁL ES LA VENTAJA?</h2>
+                        <p class="desc">A diferencia de las carreras tradicionales como Sistemas o Informática, que ofrecen una formación general en gestión y desarrollo de infraestructuras tecnológicas, la programación de IA se enfoca en crear soluciones inteligentes capaces de aprender, adaptarse y transformar procesos en múltiples sectores.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// CAMPOS DE APLICACIÓN</span>
+                        <h2 class="text-xl">¿EN QUÉ ÁREAS APLICA?</h2>
+                        <ul class="info-list"><li><strong>Medicina:</strong>Para diagnóstico, análisis y desarrollo de tratamientos.</li><li><strong>Industria:</strong>Para optimizar la producción, el mantenimiento y la gestión de procesos.</li><li><strong>Finanzas:</strong>Para análisis de riesgos, detección de fraudes y gestión de inversiones.</li><li><strong>Servicios públicos:</strong>Para optimizar servicios y planificar sistemas urbanos inteligentes.</li><li><strong>Seguridad informática:</strong>Para detectar amenazas y mejorar la protección de sistemas.</li></ul>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// CARACTERÍSTICAS</span>
+                        <h2 class="text-xl">¿QUÉ CARACTERÍSTICAS TIENE?</h2>
+                        <ul class="info-list"><li><strong>Plan de estudios:</strong>La carrera tiene una duración de 4 años, con modalidad presencial y un proceso de aprendizaje basado en la práctica.</li><li><strong>Diseña tu propio camino en la Transformación Digital:</strong>Contamos con variedad de materias electivas y optativas en temas de máxima vigencia, de alta demanda de profesionales, con mayores oportunidades en el mercado laboral y de emprendimiento.</li><li><strong>Estímulo al Desarrollo e Innovación Digital:</strong>El Centro de Oportunidades Laborales (COL) apoya las iniciativas de los estudiantes, asesorándolos en capacitaciones con cursos actualizados y ofreciendo prácticas preprofesionales en más de 500 empresas del país.</li></ul>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// INFRAESTRUCTURA</span>
+                        <h2 class="text-xl">LABORATORIOS Y CENTROS DE PRÁCTICA</h2>
+                        <p class="desc">Para tu formación práctica, contamos con el Laboratorio de Programación y Desarrollo de Software, con equipos para ejecutar software de desarrollo y compilación, dispositivos periféricos y conexión a internet dedicada.</p><p class="desc">También contamos con el Laboratorio de Inteligencia Artificial y Bases de Datos, con equipos de alto poder de procesamiento y análisis de datos, dispositivos con microcontroladores, plataformas y arquitecturas para manejar grandes volúmenes de datos.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// MALLA CURRICULAR</span>
+                        <h2 class="text-xl">PLAN DE ESTUDIOS</h2>
+                        <div class="malla-box"><div class="malla-grid"><div class="sem-card"><h4>I SEMESTRE</h4><ul><li>• Análisis Diferencial e Integral</li><li>• Estructuras Lógicas Básicas</li><li>• Inglés I</li><li>• Programación I</li><li>• Tecnología de Computadores</li><li>• Electiva</li></ul></div><div class="sem-card"><h4>II SEMESTRE</h4><ul><li>• Análisis Cuantitativos de Datos</li><li>• Inglés II</li><li>• Programación II</li><li>• Redes de Ordenadores</li><li>• Sistemas de Información</li><li>• Electiva</li></ul></div><div class="sem-card"><h4>III SEMESTRE</h4><ul><li>• Estructura de Datos</li><li>• Fundamentos de Inteligencia Artificial</li><li>• Inglés III</li><li>• Metodologías Ágiles</li><li>• Sistemas Operativos</li><li>• Electiva</li></ul></div><div class="sem-card"><h4>IV SEMESTRE</h4><ul><li>• Base de Datos</li><li>• Desarrollo de Software</li><li>• Inteligencia Artificial Generativa</li><li>• Paradigma y Arquitectura de Programación</li><li>• Programación Web Básica</li><li>• Sistemas Operativos Avanzados</li></ul></div><div class="sem-card"><h4>V SEMESTRE</h4><ul><li>• Base de Datos Avanzados</li><li>• Calidad y Verificación del Software</li><li>• Machine Learning</li><li>• Programación Web (Back End)</li><li>• Taller de Servidores</li><li>• Optativa</li></ul></div><div class="sem-card"><h4>VI SEMESTRE</h4><ul><li>• Cloud Computing</li><li>• Gestión Efectiva de Software</li><li>• Programación Web Avanzada (Front End)</li><li>• Redes Neuronales Artificiales</li><li>• Taller de Base de Datos NOSQL</li><li>• Optativa</li></ul></div><div class="sem-card"><h4>VII SEMESTRE</h4><ul><li>• Aprendizaje por Refuerzo</li><li>• Big Data - Análisis Predictivo y Minería de Datos</li><li>• Desarrollo de Aplicaciones Móviles</li><li>• Seguridad y Auditoría en los Sistemas de Información</li><li>• Sistemas Distribuidos</li><li>• Optativa</li></ul></div><div class="sem-card"><h4>VIII SEMESTRE</h4><ul><li>• Calidad de Software de Aplicaciones Móviles</li><li>• Interacción Persona Ordenador</li><li>• Prácticas y Herramientas de Dev Ops</li><li>• Procesamiento del Lenguaje Natural</li><li>• Tecnologías Emergentes</li><li>• Seminario de Grado</li></ul></div><div class="malla-sep">// ASIGNATURAS ELECTIVAS</div><div class="sem-card alt"><h4>I SEMESTRE</h4><ul><li>• Emprendimientos</li><li>• Responsabilidad Social</li></ul></div><div class="sem-card alt"><h4>II SEMESTRE</h4><ul><li>• Interculturalidad</li><li>• Metodología de la Investigación</li></ul></div><div class="sem-card alt"><h4>III SEMESTRE</h4><ul><li>• Fundamentos de Empresa</li><li>• Idioma Nativo</li></ul></div><div class="malla-sep">// ASIGNATURAS OPTATIVAS</div><div class="sem-card alt"><h4>V SEMESTRE</h4><ul><li>• Aprendizaje Profundo (DEEP LEARNING)</li><li>• Inteligencias de Negocios y Ciudades Inteligentes</li></ul></div><div class="sem-card alt"><h4>VI SEMESTRE</h4><ul><li>• Interacción de Dispositivos Tecnológicos</li><li>• Sistemas de Información Geográfica</li></ul></div><div class="sem-card alt"><h4>VII SEMESTRE</h4><ul><li>• Desarrollo de Aplicaciones de Realidad Aumentada</li><li>• Robótica Inteligente</li></ul></div></div></div>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-mision">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// PROPÓSITO INSTITUCIONAL</span>
+                        <h2 class="text-xl">NUESTRA MISIÓN</h2>
+                        <p class="desc">La misión fundamental de la Universidad Central (UNICEN) es desarrollar una formación superior prestigiosa, de alta calidad y plenamente accesible, comprometida firmemente en la búsqueda constante de la excelencia académica, enmarcada en un ambiente de equidad social, honestidad, transparencia absoluta e integridad comunitaria.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Compromiso Social →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// IMPACTO ECONÓMICO</span>
+                        <h2 class="text-xl">VÍNCULO PROFESIONAL</h2>
+                        <p class="desc">Buscamos de manera proactiva proveer un futuro profesional promisorio, seguro y altamente competitivo a todos nuestros graduados. Esto lo logramos mediante una correlación e integración directa entre la formación científica impartida y las demandas operativas reales del tejido empresarial e institucional nacional.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-vision">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// HORIZONTE UNICEN</span>
+                        <h2 class="text-xl">NUESTRA VISIÓN</h2>
+                        <p class="desc">Ser la universidad a la que todos querrán pertenecer, consolidándonos firmemente como una institución de máximo prestigio gracias a un modelo educativo moderno sustentado en la excelencia docente, el uso intensivo de tecnologías interactivas de vanguardia y un sistema práctico riguroso.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Meta Nacional →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// CERO DESEMPLEO</span>
+                        <h2 class="text-xl">LIDERAZGO REGIONAL</h2>
+                        <p class="desc">Nuestra meta a largo plazo es consolidar a la UNICEN como el referente indiscutible a nivel latinoamericano en empleabilidad profesional. Nos proyectamos como el puente definitivo que erradica por completo la brecha laboral tecnológica, asegurando inserción inmediata a través de alianzas corporativas de primer orden.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-filosofia">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// VALORES CORE</span>
+                        <h2 class="text-xl">FILOSOFÍA HUMANISTA</h2>
+                        <p class="desc">Para la Universidad Central, el ser humano constituye el eje, el principio y el fin de la totalidad de sus actividades institucionales. Concebimos la educación superior no solo como una transferencia técnica de códigos, sino como un proceso integral que potencia las facultades creativas, intelectuales y sensibles del individuo.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Ética Aplicada →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// PILARES CÍVICOS</span>
+                        <h2 class="text-xl">LIDERAZGO SOCIAL</h2>
+                        <p class="desc">Nuestra filosofía promueve valores irrenunciables: la responsabilidad comunitaria, la defensa de los derechos individuales, la equidad de oportunidades y el respeto mutuo. Preparamos a líderes tecnológicos íntegros, capaces de guiar el desarrollo informático del país bajo un estricto código ético y moral.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-macc">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// EVOLUCIÓN EDUCATIVA</span>
+                        <h2 class="text-xl">MÉTODO MAC-C</h2>
+                        <p class="desc">El Modelo Académico de Competencias UNICEN (Método MAC-C) es una reingeniería pedagógica sistémica que sustituye el aprendizaje memorístico por el desarrollo práctico enfocado en habilidades de alta demanda. Se estructura en base a la solución de problemas complejos y retos tecnológicos en tiempo real.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">El Secreto: PGO-C →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// EMPLEABILIDAD AL 100%</span>
+                        <h2 class="text-xl">PROYECTO DE GRADO</h2>
+                        <p class="desc">La piedra angular del MAC-C es el Programa de Graduación Operativa por Competencias (PGO-C). En lugar de escribir tesis tradicionales que terminan engavetadas, nuestros estudiantes desarrollan e implementan sistemas de software de IA aplicados a solucionar problemáticas críticas de empresas e industrias reales asociadas.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-campo">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// MERCADO GLOBAL</span>
+                        <h2 class="text-xl">¿DÓNDE TRABAJARÁS?</h2>
+                        <p class="desc">El campo de acción del graduado de la UNICEN no tiene fronteras geográficas. Estarás plenamente capacitado para incorporarte en corporaciones tecnológicas globales, factorías de software multinacionales, centros avanzados de investigación de IA, startups disruptivas de Silicon Valley y consultorías internacionales de transformación digital.</p>
+                        <div class="page-controls">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Roles del Futuro →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// PUESTOS DE ALTO VALOR</span>
+                        <h2 class="text-xl">ROLES REQUERIDOS</h2>
+                        <p class="desc">Asumirás con propiedad cargos de máxima responsabilidad como: Ingeniero de Modelado de Machine Learning, Arquitecto de Infraestructura Big Data, Director de Innovación Digital Corporativa, Científico de Datos Financieros, Consultor de Automatizaciones de Procesos Críticos y Desarrollador Senior de Sistemas Computacionales Autónomos.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// EL PROBLEMA</span>
+                        <h2 class="text-xl">73% DESEMPLEADOS</h2>
+                        <div class="stat-big">73%</div><span class="stat-label">DE LOS TITULADOS ESTÁ DESEMPLEADO</span><p class="desc">De 19.000 universitarios titulados, las empresas privadas solo requieren 5.504 profesionales, por lo que el 73% restante está desempleado. (BID/2019)</p><p class="desc">El 25% de las empresas no puede contratar personal porque no tiene experiencia.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// LA SOLUCIÓN</span>
+                        <h2 class="text-xl">85% EMPLEADOS</h2>
+                        <div class="stat-big">85%</div><span class="stat-label">DE TITULADOS DE UNICEN TIENE UN TRABAJO AL MOMENTO DE GRADUARSE</span><p class="desc">El Centro de Oportunidades Laborales (COL) te prepara para obtener tu primer trabajo a través de:</p><ul class="info-list"><li>Prácticas profesionales externas a partir de 4to. semestre.</li><li>Convenios con más de 500 empresas e instituciones a nivel nacional.</li><li>Cursos y seminarios de capacitación a lo largo de tu carrera.</li></ul>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-imagenes">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// ENTORNOS DE CÓDIGO</span>
+                        <h2 class="text-xl">CÓDIGO EN ACCIÓN</h2>
+                        <div class="mosaic-hd-gallery">
+                            <div class="img-hd-card"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=500&q=80" alt="1"><span class="card-caption">// Lab_01: Redes Neuronales</span></div>
+                            <div class="img-hd-card"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=500&q=80" alt="2"><span class="card-caption">// Lab_02: Simulación MAC-C</span></div>
+                        </div>
+                        <div class="page-controls" style="margin-top:15px;">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Nuestros Laboratorios →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// INFRAESTRUCTURA DE CINE</span>
+                        <h2 class="text-xl">POTENCIA HARDWARE</h2>
+                        <p class="desc">Nuestros estudiantes no simulan en computadoras obsoletas. La UNICEN cuenta con laboratorios equipados con estaciones de computación de alto rendimiento dotadas de GPUs aceleradoras especializadas en Deep Learning, servidores de pruebas locales y kits experimentales de robótica para proyectos de automatización avanzada.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()" style="margin-top:20px;">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+            <section class="panel" id="pane-ubicacion">
+                <div class="total-blocker">
+                    <div class="sub-page active">
+                        <span class="tech-tag">// COORDENADAS</span>
+                        <h2 class="text-xl">NUESTRAS SEDES</h2>
+                        <div class="locations-grid">
+                            <div class="loc-card"><h4>SEDE COCHABAMBA</h4><p>Campus Central Premium — Edificio Tecnológico de Innovación Digital.</p></div>
+                            <div class="loc-card"><h4>SEDE LA PAZ</h4><p>Torre UNICEN Corporativa — Bloques Automatizados de Alta Ingeniería.</p></div>
+                        </div>
+                        <div class="page-controls" style="margin-top:15px;">
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Sede Santa Cruz →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// PLAN DE EXPANSIÓN</span>
+                        <h2 class="text-xl">SANTA CRUZ DIGITAL</h2>
+                        <p class="desc">Sede Santa Cruz: Campus Tecnológico Industrial Integrado. Una mega-infraestructura diseñada en coherencia con el motor agroindustrial y corporativo del oriente boliviano, estructurado estratégicamente para dotar de profesionales especializados que rompan el desempleo en toda la región.</p>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                            <button class="btn-page" onclick="changeSubPage(this, 'next')">Siguiente →</button>
+                        </div>
+                    </div>
+                    <div class="sub-page">
+                        <span class="tech-tag">// DIRECCIONES</span>
+                        <h2 class="text-xl">CONTACTO DE SEDES</h2>
+                        <div class="locations-grid"><div class="loc-card"><h4>SEDE COCHABAMBA — TORRE EMPRESARIAL</h4><p>C./ Santiváñez y Junín N° 240<br>Telf.: 4252987 / WhatsApp: 75907032</p></div><div class="loc-card"><h4>SEDE COCHABAMBA — TORRE DE SALUD</h4><p>Av. Juan de la Rosa N° 234<br>Telf.: 4038657 / WhatsApp: 75907032</p></div><div class="loc-card"><h4>SUBSEDE LA PAZ — BLOQUE UNI-2</h4><p>Av. Brasil N° 1661<br>Telf.: 2229377 / WhatsApp: 78900345</p></div><div class="loc-card"><h4>SUBSEDE SANTA CRUZ — TORRE EDUCATIVA PATUJÚ</h4><p>Av. Trinidad N° 425<br>Telf.: 3343934 / WhatsApp: 78509517</p></div></div>
+                        <div class="page-controls">
+                            <button class="btn-page btn-back" onclick="changeSubPage(this, 'prev')">← Regresar</button>
+                        </div>
+                    </div>
+                    <button class="btn-volver" onclick="volverAlMenuBase()" style="margin-top:20px;">← VOLVER (LIKE IA)</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>

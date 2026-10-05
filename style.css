@@ -1,0 +1,381 @@
+/* ==========================================================================
+   CONFIGURACIÓN MAESTRA Y VARIABLES DE ENTORNO
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+:root {
+    --bg-dark: #020208;
+    --bg-card: rgba(2, 2, 12, 0.96);
+    --cyan: #00f3ff;
+    --cyan-glow: rgba(0, 243, 255, 0.35);
+    --magenta: #ff0055;
+    --magenta-glow: rgba(255, 0, 85, 0.4);
+    --text-silver: #e2e2f0;
+    --text-muted: #6e6e85;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
+    z-index: 99;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   INTERFAZ PORTAL / PRESENTACIÓN CINEMÁTICA ANIMADA (INTRO)
+   ========================================================================== */
+#welcome-gate {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #000000;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease;
+}
+
+.cinema-main {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16/9;
+}
+
+.movie-slide {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.movie-slide p {
+    font-family: 'Orbitron', sans-serif;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.scramble-tag {
+    font-size: 0.85rem;
+    color: var(--cyan);
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.movie-title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.cyan-glow {
+    color: var(--cyan);
+    text-shadow: 0 0 20px var(--cyan-glow);
+}
+
+.movie-brand {
+    font-size: 6rem;
+    font-weight: 900;
+    letter-spacing: 8px;
+    background: linear-gradient(90deg, #ffffff, #a3a3c2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.movie-slogan {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--magenta);
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px var(--magenta-glow);
+    margin-top: 20px;
+}
+
+.gate-action-area {
+    margin-top: 20px;
+    z-index: 110;
+}
+
+.gate-btn {
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    padding: 15px 35px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,243,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.gate-btn:hover {
+    background: var(--cyan);
+    color: #000000;
+    box-shadow: 0 0 35px var(--cyan);
+}
+
+/* ==========================================================================
+   VIDEOS DE FONDO Y CAPAS
+   ========================================================================== */
+.video-background-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; background: #000000; }
+.video-stream { position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh; object-fit: cover; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.6s ease; }
+.video-stream.active { opacity: 1; }
+#canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2; pointer-events: none; }
+.interface-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at 30% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 60%, rgba(2,2,8,0.85) 100%); z-index: 3; pointer-events: none; }
+
+#cinema-logo-reveal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 25; pointer-events: none; transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
+.logo-reveal-hidden { opacity: 0; filter: blur(25px); transform: translate(-50%, -50%) scale(0.6) !important; }
+.logo-reveal-visible { opacity: 1; filter: blur(0); transform: translate(-50%, -50%) scale(1) !important; }
+#cinema-logo-reveal img { height: 150px; filter: drop-shadow(0 0 35px var(--cyan)); }
+
+/* ==========================================================================
+   ESTRUCTURA DEL CONTENIDO PRINCIPAL (DASHBOARD)
+   ========================================================================== */
+.hidden-dashboard { opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
+.visible-dashboard { opacity: 1; pointer-events: auto; }
+
+.navbar { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; z-index: 15; }
+.main-logo-premium { height: 75px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.08)); }
+.ai-status { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; color: var(--cyan); display: flex; align-items: center; letter-spacing: 2px; background: rgba(0, 243, 255, 0.05); padding: 8px 16px; border: 1px solid rgba(0, 243, 255, 0.15); text-shadow: 0 0 5px var(--cyan); }
+.pulse-dot { width: 7px; height: 7px; background-color: var(--cyan); border-radius: 50%; margin-right: 10px; box-shadow: 0 0 10px var(--cyan); }
+
+.control-grid-panel { position: fixed; left: 5%; bottom: 8%; width: 330px; z-index: 20; background: rgba(1, 1, 5, 0.85); border: 1px solid rgba(255,255,255,0.05); padding: 24px; backdrop-filter: blur(20px); }
+.panel-header-title { font-family: 'Orbitron', sans-serif; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 18px; letter-spacing: 1.5px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+.buttons-mesh { display: flex; flex-direction: column; gap: 8px; }
+.nav-node { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255,255,255,0.05); color: #a3a3c2; font-family: 'Orbitron', sans-serif; font-size: 0.75rem; text-align: left; padding: 13px 16px; cursor: pointer; letter-spacing: 1px; transition: all 0.3s; position: relative; }
+.nav-node:hover, .nav-node.active { border-color: rgba(0, 243, 255, 0.4); color: var(--cyan); background: rgba(0, 243, 255, 0.05); padding-left: 22px; text-shadow: 0 0 8px var(--cyan-glow); }
+.nav-node.btn-special { border-color: rgba(255, 0, 85, 0.2); }
+.nav-node.btn-special:hover { border-color: rgba(255, 0, 85, 0.5); color: var(--magenta); background: rgba(255, 0, 85, 0.05); text-shadow: 0 0 8px var(--magenta-glow); }
+
+/* ==========================================================================
+   SISTEMA DE CUADROS COMPLETO CON PÁGINAS DE HOJEO DE TEXTO LARGO
+   ========================================================================== */
+#content-scroller { position: relative; z-index: 10; width: 100%; height: 100vh; pointer-events: none; }
+.panel { position: absolute; top: 0; right: 0; width: 55%; height: 100vh; display: flex; align-items: center; padding: 0 6%; opacity: 0; pointer-events: none; transform: translateX(30px); transition: all 0.5s ease; }
+.panel.visible { opacity: 1; pointer-events: auto; transform: translateX(0); }
+
+.total-blocker { 
+    width: 100%; 
+    max-width: 650px; 
+    background: var(--bg-card); 
+    border: 1px solid rgba(255, 255, 255, 0.06); 
+    border-left: 4px solid var(--cyan); 
+    padding: 45px; 
+    box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.9); 
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    min-height: 420px; /* Tamaño asegurado para evitar brincos o parpadeos */
+}
+
+#pane-mision .total-blocker, #pane-vision .total-blocker, #pane-ubicacion .total-blocker { border-left: 1px solid rgba(255, 255, 255, 0.06); border-right: 4px solid var(--magenta); }
+
+/* INTEGRACIÓN EXACTA DE REGLAS DE USUARIO (.TEXT-XL) */
+#main-dashboard .text-xl {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    margin-bottom: 18px;
+    display: inline-block;
+    line-height: 1.2;
+}
+
+/* CONTROLADORES DE VISIBILIDAD DE HOJAS */
+.sub-page {
+    display: none;
+    opacity: 0;
+    width: 100%;
+}
+
+.sub-page.active {
+    display: block;
+    opacity: 1;
+    animation: fadeInSubPage 0.4s ease forwards;
+}
+
+@keyframes fadeInSubPage {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.badge { display: inline-block; font-family: 'Orbitron', sans-serif; background: linear-gradient(90deg, var(--magenta), #5900ff); padding: 5px 14px; font-size: 0.65rem; font-weight: 700; margin-bottom: 20px; letter-spacing: 1.5px; }
+.tech-tag { display: block; font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: var(--cyan); margin-bottom: 10px; letter-spacing: 2px; }
+.desc { color: var(--text-silver); font-size: 1.02rem; line-height: 1.65; text-align: justify; }
+
+/* CONTROLES PARA OJEAR */
+.page-controls {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn-page {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 11px 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.btn-page:hover {
+    background: rgba(0, 243, 255, 0.15);
+    box-shadow: 0 0 15px var(--cyan-glow);
+}
+
+.btn-page.btn-back {
+    border-color: #555566;
+    color: #b5b5c8;
+}
+
+.btn-page.btn-back:hover {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+}
+
+.btn-volver { display: block; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--magenta); color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; padding: 12px 24px; margin-top: 35px; cursor: pointer; transition: all 0.3s; align-self: flex-start; }
+.btn-volver:hover { background: var(--magenta); box-shadow: 0 0 30px var(--magenta); transform: translateY(-2px); padding-left: 30px; }
+
+.mosaic-hd-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+.img-hd-card { border: 1px solid rgba(255, 255, 255, 0.06); padding: 5px; background: #000005; }
+.img-hd-card img { width: 100%; height: 125px; object-fit: cover; }
+.card-caption { display: block; font-family: 'Orbitron', sans-serif; font-size: 0.62rem; color: var(--cyan); text-align: center; margin-top: 6px; }
+.locations-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+.loc-card { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.04); padding: 16px; border-left: 3px solid var(--magenta); }
+.loc-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.85rem; margin-bottom: 4px; }
+.loc-card p { color: var(--text-muted); font-size: 0.8rem; }
+
+@media (max-width: 1100px) {
+    .panel { width: 100%; padding: 40px; justify-content: center; }
+    .total-blocker { max-width: 100%; margin-top: 80px; min-height: auto; }
+    .control-grid-panel { position: fixed; left: 5%; bottom: 4%; width: 90%; }
+    .buttons-mesh { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+}
+
+/* ==========================================================================
+   NUEVOS ESTILOS: LISTAS, ESTADÍSTICAS Y CUADRO DE MALLA CURRICULAR
+   ========================================================================== */
+.desc + .desc { margin-top: 12px; }
+
+.info-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-top: 4px; }
+.info-list li { position: relative; padding-left: 18px; color: var(--text-silver); font-size: 0.92rem; line-height: 1.5; }
+.info-list li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); }
+.info-list li strong { display: block; font-family: 'Orbitron', sans-serif; font-size: 0.72rem; color: var(--cyan); letter-spacing: 1px; margin-bottom: 2px; }
+
+.stat-big { font-family: 'Orbitron', sans-serif; font-size: 3.4rem; font-weight: 900; line-height: 1; color: var(--magenta); text-shadow: 0 0 20px var(--magenta-glow); margin-bottom: 10px; }
+.stat-label { display: block; font-family: 'Orbitron', sans-serif; font-size: 0.72rem; color: var(--cyan); letter-spacing: 1.5px; margin-bottom: 14px; }
+
+.malla-box { max-height: 42vh; overflow-y: auto; border: 1px solid rgba(0, 243, 255, 0.2); background: rgba(0, 243, 255, 0.02); padding: 12px; margin-top: 6px; }
+.malla-box::-webkit-scrollbar { width: 6px; }
+.malla-box::-webkit-scrollbar-thumb { background: rgba(0, 243, 255, 0.4); }
+.malla-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.malla-sep { grid-column: 1 / -1; font-family: 'Orbitron', sans-serif; font-size: 0.68rem; color: var(--text-muted); letter-spacing: 2px; margin-top: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 4px; }
+.sem-card { border: 1px solid rgba(255, 255, 255, 0.06); border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.015); padding: 10px 12px; }
+.sem-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: var(--cyan); letter-spacing: 1.5px; margin-bottom: 6px; }
+.sem-card ul { list-style: none; }
+.sem-card li { font-size: 0.78rem; line-height: 1.4; color: var(--text-silver); padding: 2px 0; }
+.sem-card.alt { border-left-color: var(--magenta); }
+.sem-card.alt h4 { color: var(--magenta); }
+
+/* ==========================================================================
+   VISTA CELULAR (solo afecta pantallas de hasta 768px; la PC no cambia)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Pantalla de bienvenida */
+    .cinema-main { aspect-ratio: auto; height: 300px; }
+    .movie-slide { padding: 12px; }
+    .movie-slide p { white-space: normal; }
+    .scramble-tag { font-size: 0.6rem; letter-spacing: 2px; }
+    .movie-title { font-size: 1.5rem; }
+    .movie-brand { font-size: 3rem; letter-spacing: 4px; }
+    .movie-slogan { font-size: 0.9rem; letter-spacing: 1px; }
+    .gate-btn { padding: 13px 22px; font-size: 0.72rem; }
+    #cinema-logo-reveal img { height: 90px; }
+
+    /* Barra superior compacta */
+    .navbar { padding: 8px 12px; align-items: center; gap: 10px; }
+    .main-logo-premium { height: 46px; }
+    .ai-status { font-size: 0.5rem; letter-spacing: 1px; padding: 5px 8px; max-width: 58%; }
+    .pulse-dot { width: 5px; height: 5px; margin-right: 6px; flex-shrink: 0; }
+
+    /* Contenedor fijo: evita problemas con la barra del navegador móvil */
+    #content-scroller { position: fixed; top: 0; left: 0; right: 0; bottom: 0; height: auto; }
+
+    /* Panel de contenido: entre la barra superior y el menú inferior, con scroll propio */
+    .panel {
+        top: 64px; bottom: 212px; height: auto; width: 100%;
+        padding: 0 12px; align-items: flex-start; justify-content: center;
+        overflow-y: auto; overflow-x: hidden;
+    }
+    .total-blocker { margin-top: 0; padding: 22px 18px; min-height: auto; max-width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.9); }
+    #main-dashboard .text-xl { font-size: 1.2rem; letter-spacing: 0.04em; margin-bottom: 12px; }
+    .desc { font-size: 0.9rem; line-height: 1.55; text-align: left; }
+    .badge { font-size: 0.58rem; padding: 4px 10px; margin-bottom: 14px; }
+    .tech-tag { font-size: 0.62rem; }
+    .page-controls { flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .btn-page { font-size: 0.64rem; padding: 10px 14px; }
+    .btn-volver { font-size: 0.66rem; padding: 11px 16px; margin-top: 20px; }
+    .btn-volver:hover { padding-left: 16px; }
+    .mosaic-hd-gallery { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .img-hd-card img { height: 90px; }
+    .info-list li { font-size: 0.85rem; }
+    .stat-big { font-size: 2.6rem; }
+
+    /* Malla curricular: sin scroll interno, scrollea el panel completo */
+    .malla-box { max-height: none; overflow: visible; padding: 8px; }
+    .malla-grid { grid-template-columns: 1fr; }
+
+    /* Menú de comandos fijo abajo, en 3 columnas compactas */
+    .control-grid-panel { left: 0; right: 0; bottom: 0; width: 100%; padding: 10px 12px 12px; border-left: none; border-right: none; border-bottom: none; }
+    .panel-header-title { font-size: 0.58rem; margin-bottom: 8px; padding-bottom: 5px; }
+    .buttons-mesh { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .nav-node { font-size: 0.5rem; letter-spacing: 0; padding: 7px 6px; min-height: 38px; line-height: 1.25; }
+    .nav-node:hover, .nav-node.active { padding-left: 6px; }
+}
+
+
+/* ==========================================================================
+   BOTÓN REGISTRARSE (barra superior)
+   ========================================================================== */
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.btn-registro { font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; color: #ffffff; text-decoration: none; padding: 10px 20px; border: 1px solid var(--magenta); background: rgba(255, 0, 85, 0.1); box-shadow: 0 0 14px var(--magenta-glow); transition: all 0.3s; white-space: nowrap; }
+.btn-registro:hover { background: var(--magenta); box-shadow: 0 0 30px var(--magenta); }
+@media (max-width: 768px) {
+    .nav-right { gap: 8px; max-width: 74%; }
+    .btn-registro { font-size: 0.52rem; letter-spacing: 1px; padding: 8px 9px; }
+}
